@@ -12,8 +12,8 @@ interface BadgeProps {
 }
 
 const Badge = ({ text, icon, color = '#4D44B5', textColor = 'white', isCircle, onClick }: BadgeProps) => {
-    const baseClasses = `inline-flex items-center justify-center font-medium text-xs`;
-    const shapeClasses = isCircle ? 'rounded-full p-2 cursor-pointer select-none' : 'rounded-full px-2 py-0.5 gap-1';
+    const baseClasses = `inline-flex items-center justify-center font-medium text-xs whitespace-nowrap`;
+    const shapeClasses = isCircle ? 'rounded-full p-2 cursor-pointer select-none' : 'rounded-full px-3 py-1.5 gap-1';
     const combinedClasses = `${baseClasses} ${shapeClasses}`;
     
     return (

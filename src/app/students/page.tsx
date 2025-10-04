@@ -6,6 +6,7 @@ import Button from '@/components/layout/Button';
 
 import { ChevronDown, ChevronUp, Plus } from 'lucide-react';
 import StudentsTable from '@/components/students/StudentsTable';
+import Pagination from '@/components/layout/Pagination';
 
 export default function StudentsPage() {
     const [isNewest, setIsNewest] = useState(true);
@@ -32,7 +33,7 @@ export default function StudentsPage() {
                 />
             </div>
 
-            <section className='overflow-x-auto py-6'>
+            <section className='py-6'>
                 <StudentsTable />
             </section>
         </div>
