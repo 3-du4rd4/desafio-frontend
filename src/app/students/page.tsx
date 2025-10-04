@@ -1,31 +1,22 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '@/components/layout/Header';
 import Button from '@/components/layout/Button';
-
-import { ChevronDown, ChevronUp, Plus } from 'lucide-react';
-import StudentsTable from '@/components/students/StudentsTable';
+import SortButton from '@/components/students/SortButton';
 import { StudentsProvider } from '@/contexts/StudentsContext';
+import StudentsTable from '@/components/students/StudentsTable';
 
+import { Plus } from 'lucide-react';
 
 export default function StudentsPage() {
-    const [isNewest, setIsNewest] = useState(true);
-
-    const handleToggleOrder = () => setIsNewest(!isNewest);
-    
     return (
         <StudentsProvider>
             <div className="flex flex-col gap-6">
                 <Header title="Students" />
 
                 <div className="flex items-center justify-end gap-4 flex-wrap">
-                    <Button 
-                        iconPosition="right" 
-                        onClick={handleToggleOrder} 
-                        title={isNewest ? 'Newest' : 'Oldest'}
-                        icon={isNewest ? <ChevronDown size={16} strokeWidth={3} /> : <ChevronUp size={16} strokeWidth={3} />}
-                    />
+                    <SortButton />
                     <Button 
                         title="New Student" 
                         isFilled 

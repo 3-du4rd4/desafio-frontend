@@ -4,17 +4,14 @@ import React, { useContext } from 'react';
 import Button from './Button';
 
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { StudentsContext } from '@/contexts/StudentsContext';
+import { useStudents } from '@/contexts/StudentsContext';
 
 interface PaginationProps {
     totalItems: number;
 }
 
 const Pagination = ({ totalItems }: PaginationProps) => {
-    const studentsContext = useContext(StudentsContext);
-    const currentPage = studentsContext?.currentPage ?? 1;
-    const setCurrentPage = studentsContext?.setCurrentPage ?? (() => {});
-    const rowsPerPage = studentsContext?.rowsPerPage ?? 10;
+    const { currentPage, setCurrentPage, rowsPerPage } = useStudents();
     const totalPages = Math.ceil(totalItems / rowsPerPage);
 
     return (

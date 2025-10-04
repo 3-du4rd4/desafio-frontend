@@ -5,20 +5,7 @@ import { Phone, Mail } from 'lucide-react';
 import Badge from '@/components/layout/Badge';
 import Pagination from '../layout/Pagination';
 import { formatDate } from '@/utils/date';
-import { StudentsContext } from '@/contexts/StudentsContext';
-
-interface Student {
-    id: string;
-    name: string;
-    date: string;
-    parentName: string;
-    city: string;
-    grade: string;
-}
-
-interface StudentsTableProps {
-    students?: Student[];
-}
+import { useStudents } from '@/contexts/StudentsContext';
 
 const gradeColors: Record<string, string> = {
   'VII A': '#FB7D5B',  
@@ -26,30 +13,12 @@ const gradeColors: Record<string, string> = {
   'VII C': '#4D44B5',      
 };
 
-const StudentsTable = ({ students }: StudentsTableProps) => {
-    const context = useContext(StudentsContext);
-    const currentPage = context?.currentPage ?? 1;
-    const rowsPerPage = context?.rowsPerPage ?? 10;
-    
-    const defaultStudents: Student[] = [
-        { id: '#123456789', name: 'Samanta William', date: '2023-01-01', parentName: 'Maria William', city: 'Jakarta', grade: 'VII A' },
-        { id: '#987654321', name: 'Bob Smith', date: '2023-02-02', parentName: 'Jane Smith', city: 'Los Angeles', grade: 'VII B' },
-        { id: '#456789123', name: 'Carol Davis', date: '2023-01-03', parentName: 'Mike Davis', city: 'Chicago', grade: 'VII C' },
-        { id: '#000000000', name: 'Samanta William', date: '2023-01-01', parentName: 'Maria William', city: 'Jakarta', grade: 'VII A' },
-        { id: '#111111111', name: 'Bob Smith', date: '2023-01-02', parentName: 'Jane Smith', city: 'Los Angeles', grade: 'VII B' },
-        { id: '#222222222', name: 'Carol Davis', date: '2023-01-03', parentName: 'Mike Davis', city: 'Chicago', grade: 'VII C' },
-        { id: '#333333333', name: 'Samanta William', date: '2023-01-01', parentName: 'Maria William', city: 'Jakarta', grade: 'VII A' },
-        { id: '#444444444', name: 'Bob Smith', date: '2023-01-02', parentName: 'Jane Smith', city: 'Los Angeles', grade: 'VII B' },
-        { id: '#555555555', name: 'Carol Davis', date: '2023-01-03', parentName: 'Mike Davis', city: 'Chicago', grade: 'VII C' },
-        { id: '#666666666', name: 'Samanta William', date: '2023-01-01', parentName: 'Maria William', city: 'Jakarta', grade: 'VII A' },
-        { id: '#777777777', name: 'Bob Smith', date: '2023-01-02', parentName: 'Jane Smith', city: 'Los Angeles', grade: 'VII B' },
-        { id: '#888888888', name: 'Carol Davis', date: '2023-01-03', parentName: 'Mike Davis', city: 'Chicago', grade: 'VII C' },
-    ];
-
-    const data = students ?? defaultStudents;
+const StudentsTable = () => {
+    const { students, currentPage, rowsPerPage } = useStudents();
 
     const startIndex = (currentPage - 1) * rowsPerPage;
-    const currentData = data.slice(startIndex, startIndex + rowsPerPage);
+    const currentData = students.slice(startIndex, startIndex + rowsPerPage);
+
 
     return (
         <div className='flex flex-col gap-8 bg-white rounded-2xl shadow pb-4'>
@@ -93,7 +62,7 @@ const StudentsTable = ({ students }: StudentsTableProps) => {
 
             <div className='flex justify-end px-2'>
                 
-                <Pagination totalItems={data.length} />
+                <Pagination totalItems={students.length} />
             </div>
         </div>
     );
