@@ -40,9 +40,13 @@ const defaultStudents: Student[] = [
 ];
 
 export const StudentsProvider = ({ children }: { children: ReactNode }) => {
-    const [students, setStudents] = useState<Student[]>(defaultStudents);
+    const [students, setStudents] = useState<Student[]>(
+        [...defaultStudents].sort(
+            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+        )
+    );
 
-      const sortByNewest = () => {
+    const sortByNewest = () => {
         setStudents((prev) =>
         [...prev].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
         );
