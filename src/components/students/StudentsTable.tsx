@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useContext, useState } from 'react';
-import { Phone, Mail, ClipboardCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { formatDate } from '@/utils/date';
+import { getInitials } from '@/utils/string';
 import Badge from '@/components/layout/Badge';
 import Pagination from '../layout/Pagination';
-import { formatDate } from '@/utils/date';
 import { useStudents } from '@/contexts/StudentsContext';
-import { getInitials } from '@/utils/string';
+
+import { Phone, Mail, ClipboardCheck } from 'lucide-react';
 
 const gradeColors: Record<string, string> = {
   'VII A': '#FB7D5B',  
@@ -22,9 +23,6 @@ const StudentsTable = () => {
     const currentData = students.slice(startIndex, startIndex + rowsPerPage);
 
     const handleCopy = (id: string, content: string) => {
-        console.log('Copying to clipboard:', content);
-        console.log('Using navigator.clipboard:', navigator.clipboard);
-        console.log('Identifier:', id);
         navigator.clipboard.writeText(content);
         setCopiedId(id);
         setTimeout(() => setCopiedId(null), 1500);
@@ -59,8 +57,8 @@ const StudentsTable = () => {
                             <td className="py-1 px-2 lg:py-2 lg:px-4">{student.parentName}</td>
                             <td className="py-1 px-2 lg:py-2 lg:px-4">{student.city}</td>
                             <td className="py-1 px-2 lg:py-2 lg:px-4">
-                                <div className='flex items-center justify-between gap-3 '>
-                                    <div className="relative">
+                                <div className='flex items-center gap-3 '>
+                                    <div className="relative w-fit">
                                         <Badge 
                                             icon={
                                             copiedId === `${student.id}-phone`
@@ -83,7 +81,7 @@ const StudentsTable = () => {
                                             </div>
                                         )}
                                     </div>
-                                    <div className="relative">
+                                    <div className="relative w-fit">
                                         <Badge 
                                             icon={
                                             copiedId === `${student.id}-mail`
@@ -120,7 +118,6 @@ const StudentsTable = () => {
             </div>
 
             <div className='flex justify-end px-2'>
-                
                 <Pagination totalItems={students.length} />
             </div>
         </div>

@@ -14,31 +14,31 @@ export interface Student {
 }
 
 interface StudentsContextProps {
-    students: Student[];
-    setStudents: React.Dispatch<React.SetStateAction<Student[]>>;
-    sortByNewest: () => void;
-    sortByOldest: () => void;
     totalPages: number;
+    students: Student[];
     currentPage: number;
     rowsPerPage: number;
+    sortByOldest: () => void;
+    sortByNewest: () => void;
     setCurrentPage: (page: number) => void;
+    setStudents: React.Dispatch<React.SetStateAction<Student[]>>;
 }
 
 export const StudentsContext = createContext<StudentsContextProps | undefined>(undefined);
 
 const defaultStudents: Student[] = [
-    { id: '#123456789', name: 'Samanta William', date: '2023-01-01', parentName: 'Maria William', city: 'Jakarta', phone: '123456789', email: 'R5Y3o@example.com', grade: 'VII A' },
-    { id: '#987654321', name: 'Bob Smith', date: '2023-02-02', parentName: 'Jane Smith', city: 'Los Angeles', phone: '987654321', email: 'B0B@example.com', grade: 'VII B' },
-    { id: '#456789123', name: 'Carol Davis', date: '2023-01-03', parentName: 'Mike Davis', city: 'Chicago', phone: '456789123', email: 'C4R0L@example.com', grade: 'VII C' },
-    { id: '#000000000', name: 'Samanta William', date: '2023-01-01', parentName: 'Maria William', city: 'Jakarta', phone: '000000000', email: 'S4M@example.com', grade: 'VII A' },
-    { id: '#111111111', name: 'Bob Smith', date: '2023-01-02', parentName: 'Jane Smith', city: 'Los Angeles', phone: '111111111', email: 'B0B1@example.com', grade: 'VII B' },
-    { id: '#222222222', name: 'Carol Davis', date: '2023-01-03', parentName: 'Mike Davis', city: 'Chicago', phone: '222222222', email: 'C4R2L@example.com', grade: 'VII C' },
-    { id: '#333333333', name: 'Samanta William', date: '2023-01-01', parentName: 'Maria William', city: 'Jakarta', phone: '333333333', email: 'S4M3@example.com', grade: 'VII A' },
-    { id: '#444444444', name: 'Bob Smith', date: '2023-01-02', parentName: 'Jane Smith', city: 'Los Angeles', phone: '444444444', email: 'B0B4@example.com', grade: 'VII B' },
-    { id: '#555555555', name: 'Carol Davis', date: '2023-01-03', parentName: 'Mike Davis', city: 'Chicago', phone: '555555555', email: 'C4R5L@example.com', grade: 'VII C' },
-    { id: '#666666666', name: 'Samanta William', date: '2023-01-01', parentName: 'Maria William', city: 'Jakarta', phone: '666666666', email: 'S4M6@example.com', grade: 'VII A' },
-    { id: '#777777777', name: 'Bob Smith', date: '2023-01-02', parentName: 'Jane Smith', city: 'Los Angeles', phone: '777777777', email: 'B0B7@example.com', grade: 'VII B' },
-    { id: '#888888888', name: 'Carol Davis', date: '2023-01-03', parentName: 'Mike Davis', city: 'Chicago', phone: '888888888', email: 'C4R8L@example.com', grade: 'VII C' },
+  { id: '#123456789', name: 'Laura Mendes', date: '2023-02-15', parentName: 'Ricardo Mendes', city: 'São Paulo', phone: '(11) 91234-5678', email: 'laura.mendes@example.com', grade: 'VII A' },
+  { id: '#987654321', name: 'Pedro Santos', date: '2023-03-10', parentName: 'Fernanda Santos', city: 'Rio de Janeiro', phone: '(21) 99876-5432', email: 'pedro.santos@example.com', grade: 'VII B' },
+  { id: '#456789123', name: 'Camila Rocha', date: '2023-01-25', parentName: 'André Rocha', city: 'Belo Horizonte', phone: '(31) 98765-4321', email: 'camila.rocha@example.com', grade: 'VII C' },
+  { id: '#000000001', name: 'Lucas Almeida', date: '2023-02-01', parentName: 'Patrícia Almeida', city: 'Curitiba', phone: '(41) 99654-3210', email: 'lucas.almeida@example.com', grade: 'VII A' },
+  { id: '#000000002', name: 'Isabela Costa', date: '2023-01-18', parentName: 'Marcos Costa', city: 'Fortaleza', phone: '(85) 98877-6655', email: 'isabela.costa@example.com', grade: 'VII B' },
+  { id: '#000000003', name: 'Rafael Oliveira', date: '2023-03-05', parentName: 'Renata Oliveira', city: 'Recife', phone: '(81) 99777-8899', email: 'rafael.oliveira@example.com', grade: 'VII C' },
+  { id: '#000000004', name: 'Ana Beatriz Lima', date: '2023-02-11', parentName: 'Sérgio Lima', city: 'Brasília', phone: '(61) 99911-2233', email: 'ana.lima@example.com', grade: 'VII A' },
+  { id: '#000000005', name: 'Gustavo Pereira', date: '2023-03-20', parentName: 'Daniela Pereira', city: 'Salvador', phone: '(71) 99123-4567', email: 'gustavo.pereira@example.com', grade: 'VII B' },
+  { id: '#000000006', name: 'Mariana Torres', date: '2023-01-29', parentName: 'Eduardo Torres', city: 'Porto Alegre', phone: '(51) 99888-7766', email: 'mariana.torres@example.com', grade: 'VII C' },
+  { id: '#000000007', name: 'Felipe Souza', date: '2023-02-07', parentName: 'Cláudia Souza', city: 'Florianópolis', phone: '(48) 99777-1122', email: 'felipe.souza@example.com', grade: 'VII A' },
+  { id: '#000000008', name: 'Sofia Nunes', date: '2023-03-02', parentName: 'Paulo Nunes', city: 'Vitória', phone: '(27) 99222-3344', email: 'sofia.nunes@example.com', grade: 'VII B' },
+  { id: '#000000009', name: 'Matheus Ribeiro', date: '2023-01-12', parentName: 'Juliana Ribeiro', city: 'Campinas', phone: '(19) 99444-5566', email: 'matheus.ribeiro@example.com', grade: 'VII C' },
 ];
 
 export const StudentsProvider = ({ children }: { children: ReactNode }) => {
@@ -65,7 +65,11 @@ export const StudentsProvider = ({ children }: { children: ReactNode }) => {
     const [currentPage, setCurrentPage] = useState(1);
 
     return (
-        <StudentsContext.Provider value={{ students, setStudents, sortByNewest, sortByOldest, currentPage, setCurrentPage, totalPages, rowsPerPage }}>
+        <StudentsContext.Provider 
+            value={{ students, setStudents, sortByNewest, sortByOldest, 
+                currentPage, setCurrentPage, totalPages, rowsPerPage 
+            }}
+        >
             {children}
         </StudentsContext.Provider>
     );
@@ -73,8 +77,10 @@ export const StudentsProvider = ({ children }: { children: ReactNode }) => {
 
 export const useStudents = () => {
     const context = useContext(StudentsContext);
+
     if (!context) {
-        throw new Error('useStudents must be used within a StudentsProvider');
+        throw new Error('contexto useStudents foi usado fora do provider');
     }
+
     return context;
 };
