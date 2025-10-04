@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Phone, Mail } from 'lucide-react';
 import Badge from '@/components/layout/Badge';
 import Pagination from '../layout/Pagination';
 import { formatDate } from '@/utils/date';
+import { StudentsContext } from '@/contexts/StudentsContext';
 
 interface Student {
     id: string;
@@ -26,8 +27,9 @@ const gradeColors: Record<string, string> = {
 };
 
 const StudentsTable = ({ students }: StudentsTableProps) => {
-    const totalPages = 5;
-    const [currentPage, setCurrentPage] = useState(1);
+    const context = useContext(StudentsContext);
+    const currentPage = context?.currentPage ?? 1;
+    const rowsPerPage = context?.rowsPerPage ?? 10;
     
     const defaultStudents: Student[] = [
         { id: '#123456789', name: 'Samanta William', date: '2023-01-01', parentName: 'Maria William', city: 'Jakarta', grade: 'VII A' },
@@ -46,6 +48,9 @@ const StudentsTable = ({ students }: StudentsTableProps) => {
 
     const data = students ?? defaultStudents;
 
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const currentData = data.slice(startIndex, startIndex + rowsPerPage);
+
     return (
         <div className='flex flex-col gap-8 bg-white rounded-2xl shadow pb-4'>
             <div className='overflow-x-auto'>
@@ -62,7 +67,7 @@ const StudentsTable = ({ students }: StudentsTableProps) => {
                         </tr>
                     </thead>
                     <tbody className='divide-y divide-gray-200 text-[#303972] text-sm'>
-                        {data.map(student => (
+                        {currentData.map(student => (
                         <tr key={student.id} className=" hover:bg-[#f7f8fe] transition-colors">
                             <td className="py-4 px-6 font-semibold">{student.name}</td>
                             <td className="py-4 px-6 text-[#4D44B5]">{student.id}</td>
@@ -88,7 +93,7 @@ const StudentsTable = ({ students }: StudentsTableProps) => {
 
             <div className='flex justify-end px-2'>
                 
-                <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={(page) => setCurrentPage(page)} />
+                <Pagination totalItems={data.length} />
             </div>
         </div>
     );
