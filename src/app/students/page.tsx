@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header';
 import Button from '@/components/layout/Button';
 
 import { ChevronDown, ChevronUp, Plus } from 'lucide-react';
+import StudentsTable from '@/components/students/StudentsTable';
 
 export default function StudentsPage() {
     const [isNewest, setIsNewest] = useState(true);
@@ -31,8 +32,8 @@ export default function StudentsPage() {
                 />
             </div>
 
-            <section className="bg-white p-6 rounded-2xl shadow">
-                <p className="text-gray-600">Student list will appear here...</p>
+            <section className='overflow-x-auto py-6'>
+                <StudentsTable />
             </section>
         </div>
     );

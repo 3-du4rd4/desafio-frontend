@@ -24,7 +24,7 @@ const Layout = ({ children }: LayoutProps) => {
 
             <Sidebar isOpen={isOpen} setIsOpen={setIsOpen}/>
 
-            <main className={`flex-1 bg-[#F3F4FF] p-6 transition-opacity duration-300 !pt-14 lg:!pt-6 ${isOpen ? 'opacity-50' : ''}`}>
+            <main className={`flex-1 bg-[#F3F4FF] w-full p-6 transition-opacity duration-300 !pt-14 lg:!pt-6 ${isOpen ? 'opacity-50' : ''}`}>
                 {children}
             </main>
         </div>
