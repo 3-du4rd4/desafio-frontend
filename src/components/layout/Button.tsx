@@ -25,12 +25,12 @@ const Button = ({
     isCircle = false,
     iconPosition = 'left',
 }: ButtonProps) => {
-    let baseClasses = `flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer font-medium`;
+    let baseClasses = `flex items-center text-xs sm:text-sm lg:text-base justify-center gap-1 lg:gap-2 transition-all duration-300 cursor-pointer font-medium`;
 
     if (isCircle) {
         baseClasses += ' rounded-full p-2'; 
     } else {
-        baseClasses += ' rounded-full px-6 py-3';
+        baseClasses += ' rounded-full px-4 py-2 lg:px-6 lg:py-3';
     }
 
     if (isFilled) {

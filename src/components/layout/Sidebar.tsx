@@ -31,7 +31,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
               className="p-2 cursor-pointer"
               onClick={() => setIsOpen(false)}
           >
-              <X className="w-6 h-6 text-white" />
+              <X className="w-6 h-6 md:w-8 md:h-8 text-white" />
           </button>
         </div>
         <div className='flex items-center justify-center gap-3 p-6 !pr-12'>
