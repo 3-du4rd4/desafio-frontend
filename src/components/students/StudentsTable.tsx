@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useContext, useState } from 'react';
-import { Phone, Mail } from 'lucide-react';
+import { Phone, Mail, ClipboardCheck } from 'lucide-react';
 import Badge from '@/components/layout/Badge';
 import Pagination from '../layout/Pagination';
 import { formatDate } from '@/utils/date';
@@ -16,10 +16,19 @@ const gradeColors: Record<string, string> = {
 
 const StudentsTable = () => {
     const { students, currentPage, rowsPerPage } = useStudents();
+    const [copiedId, setCopiedId] = useState<string | null>(null);
 
     const startIndex = (currentPage - 1) * rowsPerPage;
     const currentData = students.slice(startIndex, startIndex + rowsPerPage);
 
+    const handleCopy = (id: string, content: string) => {
+        console.log('Copying to clipboard:', content);
+        console.log('Using navigator.clipboard:', navigator.clipboard);
+        console.log('Identifier:', id);
+        navigator.clipboard.writeText(content);
+        setCopiedId(id);
+        setTimeout(() => setCopiedId(null), 1500);
+    };
 
     return (
         <div className='flex flex-col gap-8 bg-white rounded-2xl shadow pb-6'>
@@ -50,9 +59,53 @@ const StudentsTable = () => {
                             <td className="py-1 px-2 lg:py-2 lg:px-4">{student.parentName}</td>
                             <td className="py-1 px-2 lg:py-2 lg:px-4">{student.city}</td>
                             <td className="py-1 px-2 lg:py-2 lg:px-4">
-                                <div className='flex items-center justify-between gap-3'>
-                                    <Badge icon={<Phone size={16} strokeWidth={2} />} color='#E0E0FF' textColor='#4D44B5' isCircle />
-                                    <Badge icon={<Mail size={16} strokeWidth={2} />} color='#E0E0FF' textColor='#4D44B5' isCircle />
+                                <div className='flex items-center justify-between gap-3 '>
+                                    <div className="relative">
+                                        <Badge 
+                                            icon={
+                                            copiedId === `${student.id}-phone`
+                                                ? <ClipboardCheck size={16} strokeWidth={2} />
+                                                : <Phone size={16} strokeWidth={2} />
+                                            }
+                                            color="#E0E0FF"
+                                            textColor="#4D44B5"
+                                            isCircle
+                                            onClick={() => handleCopy(`${student.id}-phone`, student.phone)}
+                                        />
+
+                                        {copiedId === `${student.id}-phone` && (
+                                            <div
+                                            role="tooltip"
+                                            className="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#4D44B5] text-white text-xs font-medium px-2 py-1 rounded-md shadow-md animate-fade"
+                                            >
+                                            Copiado!
+                                            <div className="tooltip-arrow"></div>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="relative">
+                                        <Badge 
+                                            icon={
+                                            copiedId === `${student.id}-mail`
+                                                ? <ClipboardCheck size={16} strokeWidth={2} />
+                                                : <Mail size={16} strokeWidth={2} />
+                                            }
+                                            color="#E0E0FF"
+                                            textColor="#4D44B5"
+                                            isCircle
+                                            onClick={() => handleCopy(`${student.id}-mail`, student.email)}
+                                        />
+
+                                        {copiedId === `${student.id}-mail` && (
+                                            <div
+                                            role="tooltip"
+                                            className="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#4D44B5] text-white text-xs font-medium px-2 py-1 rounded-md shadow-md animate-fade-in-out"
+                                            >
+                                            Copiado!
+                                            <div className="tooltip-arrow"></div>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </td>
                             <td className="py-1 px-2 lg:py-2 lg:px-4">

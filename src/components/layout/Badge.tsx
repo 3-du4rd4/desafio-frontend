@@ -7,14 +7,15 @@ interface BadgeProps {
     color?: string; 
     isCircle?: boolean;
     textColor?: string; 
+    classname?: string;
     onClick?: () => void;
     icon?: React.ReactNode;
 }
 
-const Badge = ({ text, icon, color = '#4D44B5', textColor = 'white', isCircle, onClick }: BadgeProps) => {
+const Badge = ({ text, icon, color = '#4D44B5', textColor = 'white', isCircle, onClick, classname }: BadgeProps) => {
     const baseClasses = `inline-flex items-center justify-center font-medium text-xs whitespace-nowrap`;
     const shapeClasses = isCircle ? 'rounded-full p-2 cursor-pointer select-none' : 'rounded-full px-3 py-1.5 gap-1';
-    const combinedClasses = `${baseClasses} ${shapeClasses}`;
+    const combinedClasses = `${classname || ''} ${baseClasses} ${shapeClasses} `;
     
     return (
         <div
