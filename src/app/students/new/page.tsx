@@ -11,6 +11,7 @@ import { Student, useStudents } from '@/contexts/StudentsContext';
 import Button from '@/components/layout/Button';
 import { generateRandomId, getRandomGrade } from '@/utils/students';
 import toast from 'react-hot-toast';
+import { InputMask } from '@react-input/mask';
 
 const studentSchema = z.object({
     firstName: z.string().min(3, 'Nome deve ter pelo menos 3 caracteres'),
@@ -20,7 +21,7 @@ const studentSchema = z.object({
     }, 'E-mail inválido'),
     phone: z.string().min(8, 'Telefone inválido'),
     dateOfBirth: z.string().nonempty('Data obrigatória'),
-    address: z.string().min(5, 'Endereço deve ter pelo menos 5 caracteres'),
+    address: z.string().min(5, 'Endereço deve ter pelo menos 5 caracteres').max(2000, 'Endereço deve ter menos de 2000 caracteres'),
     parentName: z.string().min(3, 'Nome do responsável deve ter pelo menos 3 caracteres'),
     placeOfBirth: z.string().min(3, 'Local de nascimento deve ter pelo menos 3 caracteres'),
 
@@ -30,7 +31,7 @@ const studentSchema = z.object({
         return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i.test(str);
     }, 'E-mail inválido'),
     parentPhone: z.string().min(8, 'Telefone inválido'),
-    parentAddress: z.string().min(5, 'Endereço deve ter pelo menos 5 caracteres'),
+    parentAddress: z.string().min(5, 'Endereço deve ter pelo menos 5 caracteres').max(2000, 'Endereço deve ter menos de 2000 caracteres'),
     payments: z.enum(['Cash', 'Debit'], 'Selecione uma forma de pagamento'),
 });
 
@@ -38,11 +39,28 @@ type StudentFormData = z.infer<typeof studentSchema>;
 
 export default function AddStudentPage() {
     const [draftSaved, setDraftSaved] = useState(false);
-    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm<StudentFormData>({
+    const { register, handleSubmit, formState: { errors }, reset, watch, control } = useForm<StudentFormData>({
         resolver: zodResolver(studentSchema),
-        defaultValues: {} ,
+        defaultValues: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            dateOfBirth: '',
+            address: '',
+            parentName: '',
+            placeOfBirth: '',
+            parentFirstName: '',
+            parentEmail: '',
+            parentPhone: '',
+            parentAddress: '',
+            payments: 'Cash',
+            parentLastName: '',
+        } ,
         mode: 'onBlur',
     });
+
+    let props = { value: '' };
 
     const router = useRouter();
     const draftKey = 'studentDraft';
@@ -89,6 +107,8 @@ export default function AddStudentPage() {
                         title="Student Details"
                         register={register}
                         errors={errors}
+                        watch={watch}
+                        control={control}
                         fields={[
                             { label: 'First Name', name: 'firstName', type: 'text', placeholder: 'Samantha', required: true },
                             { label: 'Last Name', name: 'lastName', type: 'text', placeholder: 'William', required: true },
@@ -109,6 +129,8 @@ export default function AddStudentPage() {
                         title="Parent Details"
                         register={register}
                         errors={errors}
+                        watch={watch}
+                        control={control}
                         fields={[
                             { label: 'First Name', name: 'parentFirstName', type: 'text', placeholder: 'Samantha', required: true },
                             { label: 'Last Name', name: 'parentLastName', type: 'text', placeholder: 'William', required: true },
@@ -118,6 +140,8 @@ export default function AddStudentPage() {
                             { label: 'Payments', name: 'payments', type: 'radio', options: ['Cash', 'Debit'], required: true },
                         ]}
                     />
+
+                    
 
                     <div className='flex items-center justify-end gap-4 flex-wrap'>
                         <div className='relative w-fit'>

@@ -1,5 +1,6 @@
 import React from 'react';
-import { FieldErrors, FieldValues, Path, UseFormRegister } from 'react-hook-form';
+import { InputMask } from '@react-input/mask';
+import { Control, Controller, FieldErrors, FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
 interface SubField {
   name: string;
@@ -24,9 +25,11 @@ interface FormSectionProps<T extends FieldValues> {
   fields: FormField[];
   errors: FieldErrors<T>;
   register: UseFormRegister<T>;
+  watch: (field: string) => any;
+  control: Control<T>;
 }
 
-const FormSection = <T extends FieldValues>({ title, fields, register, errors }: FormSectionProps<T>) => {
+const FormSection = <T extends FieldValues>({ title, fields, register, errors, watch, control }: FormSectionProps<T>) => {
   return (
     <div className="bg-white rounded-2xl shadow">
       <div className="px-6 py-3 bg-[#4D44B5] rounded-t-2xl">
@@ -49,7 +52,7 @@ const FormSection = <T extends FieldValues>({ title, fields, register, errors }:
                       id={subField.name}
                       type={subField.type || 'text'}
                       placeholder={subField.placeholder}
-                      className="flex-1 border border-[#C1BBEB] p-2 lg:p-3 rounded text-sm lg:text-base text-[#A098AE] focus:border-[#4D44B5] focus:ring-1 focus:ring-[#4D44B5] focus:outline-none"
+                      className="flex-1 border border-[#C1BBEB] p-2 lg:px-4 rounded text-sm lg:text-base text-[#A098AE] focus:border-[#4D44B5] focus:ring-1 focus:ring-[#4D44B5] focus:outline-none"
                     />
                     {errors[subField.name as keyof T] && (
                       <span className="text-red-500 text-xs mt-1">
@@ -66,8 +69,12 @@ const FormSection = <T extends FieldValues>({ title, fields, register, errors }:
                   id={field.name}
                   placeholder={field.placeholder}
                   rows={4}
-                  className="border border-[#C1BBEB] p-2 lg:p-3 rounded-md text-sm lg:text-base text-[#A098AE] resize-none focus:border-[#4D44B5] focus:ring-1 focus:ring-[#4D44B5] focus:outline-none"
+                  maxLength={2000}
+                  className="border border-[#C1BBEB] p-2 lg:px-4 rounded text-sm lg:text-base text-[#A098AE] resize-none focus:border-[#4D44B5] focus:ring-1 focus:ring-[#4D44B5] focus:outline-none"
                 />
+                 <div className="text-xs text-right text-[#A098AE] mt-1">
+                  {(watch(field.name || '')?.length || 0)}/2000
+                </div>
                 {errors[field.name as keyof T] && (
                   <span className="text-red-500 text-xs mt-1">
                     {errors[field.name as keyof T]?.message?.toString()}
@@ -93,6 +100,29 @@ const FormSection = <T extends FieldValues>({ title, fields, register, errors }:
                   </span>
                 )}
               </div>
+            ) :  field.type === 'tel' ? (
+              <>
+                <Controller
+                  name={field.name as Path<T>}
+                  control={control}
+                  render={({ field: controllerField }) => (
+                    <InputMask
+                      mask="(__) _____-____"
+                      replacement={{ _: /\d/ }}
+                      {...controllerField}
+                      id={field.name}
+                      placeholder={field.placeholder}
+                      className="border border-[#C1BBEB] p-2 lg:p-3 rounded-md text-sm lg:text-base text-[#A098AE]
+                                focus:border-[#4D44B5] focus:ring-1 focus:ring-[#4D44B5] focus:outline-none"
+                    />
+                  )}
+                />
+                {errors[field.name as keyof T] && (
+                  <span className="text-red-500 text-xs mt-1">
+                    {errors[field.name as keyof T]?.message?.toString()}
+                  </span>
+                )}
+              </>
             ) : (
               <>
                 <input
@@ -100,7 +130,7 @@ const FormSection = <T extends FieldValues>({ title, fields, register, errors }:
                   id={field.name}
                   type={field.type}
                   placeholder={field.placeholder}
-                  className="border border-[#C1BBEB] p-2 lg:p-3 rounded-md text-sm lg:text-base text-[#A098AE] focus:border-[#4D44B5] focus:ring-1 focus:ring-[#4D44B5] focus:outline-none"
+                  className="border border-[#C1BBEB] p-2 lg:px-4 rounded text-sm lg:text-base text-[#A098AE] focus:border-[#4D44B5] focus:ring-1 focus:ring-[#4D44B5] focus:outline-none"
                 />
                 {errors[field.name as keyof T] && (
                   <span className="text-red-500 text-xs mt-1">
