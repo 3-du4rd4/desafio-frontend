@@ -55,7 +55,7 @@ export default function StudentsPage() {
                 />
             </div>
 
-            <section className='pb-6 lg:pt-6 flex flex-col gap-8 bg-white rounded-2xl shadow'>
+            <section className='pb-6 lg:pt-6 flex flex-col gap-8 md:bg-white rounded-2xl md:shadow'>
                 <StudentsDisplay />
                 <div className='flex justify-end px-2'>
                     <Pagination totalItems={students.length} />

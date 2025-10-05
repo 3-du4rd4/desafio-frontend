@@ -6,8 +6,8 @@ interface HeaderProps {
 
 const Header = ({ title }: HeaderProps) => {
   return (
-    <header className="flex items-center justify-between lg:my-6">
-      <h1 className="text-2xl lg:text-3xl font-bold text-[#4D44B5] transition-all duration-300">
+    <header className="flex items-center justify-between md:my-6">
+      <h1 className="text-2xl md:text-3xl font-bold text-[#4D44B5] transition-all duration-300">
         {title}
       </h1>
     </header>

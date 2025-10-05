@@ -41,9 +41,9 @@ const StudentsCard = ({ currentData, students }: { currentData: Student[], stude
                         />
                     </div>
             ) : (
-                <div className='grid grid-cols-1 sm:grid-cols-2 gap-8 p-6 !pb-0'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-8 p-1'>
                     {currentData.map((student) => (
-                        <div key={student.id} className="text-[#303972] border border-gray-100 rounded-lg p-4 flex flex-col gap-4 shadow-sm">
+                        <div key={student.id} className="text-[#303972]  bg-white  rounded-lg p-4 flex flex-col gap-4 shadow-sm">
                             <div className="flex items-start justify-between gap-4 flex-wrap">
                                 <span className="w-12 p-1 aspect-square rounded-full bg-[#C1BBEB] text-white flex items-center justify-center text-base font-medium">
                                     {getInitials(student.name)}

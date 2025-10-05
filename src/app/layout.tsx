@@ -27,7 +27,9 @@ export default function RootLayout({
       >
         <StudentsProvider>
           {children}
-          <Toaster position="top-right" reverseOrder={false} />
+          <Toaster position="top-right" reverseOrder={false} toastOptions={{
+            className: 'w-72 sm:w-52', 
+          }}/>
         </StudentsProvider>
       </body>
     </html>
