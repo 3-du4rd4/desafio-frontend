@@ -9,9 +9,10 @@ interface ButtonProps {
     className?: string;
     noBorder?: boolean;
     isCircle?: boolean;
-    onClick: () => void;
+    onClick?: () => void;
     icon?: React.ReactNode;
     iconPosition?: 'left' | 'right';
+    type?: 'button' | 'submit' | 'reset';
 }
 
 const Button = ({
@@ -19,6 +20,7 @@ const Button = ({
     onClick,
     title = '',
     className = '',
+    type = 'button',
     disabled = false,
     isFilled = false,
     noBorder = false,
@@ -46,7 +48,7 @@ const Button = ({
     baseClasses += ` ${className}`;
 
     return (
-        <button className={baseClasses} onClick={onClick} disabled={disabled}>
+        <button className={baseClasses} onClick={onClick} disabled={disabled} type={type}>
             {icon && iconPosition === 'left' && <span>{icon}</span>}
             {title}
             {icon && iconPosition === 'right' && <span>{icon}</span>}
