@@ -111,16 +111,16 @@ export default function AddStudentPage() {
                     watch={watch}
                     control={control}
                     fields={[
-                        { label: 'First Name', name: 'firstName', type: 'text', placeholder: 'Samantha', required: true },
-                        { label: 'Last Name', name: 'lastName', type: 'text', placeholder: 'William', required: true },
+                        { label: 'First Name', name: 'firstName', type: 'text', placeholder: 'Ana', required: true },
+                        { label: 'Last Name', name: 'lastName', type: 'text', placeholder: 'Silva', required: true },
                         { label: 'Date & Place of Birth', required: true, type: 'group',
                             fields: [
                             { name: 'dateOfBirth', type: 'date', required: true },
-                            { name: 'placeOfBirth', type: 'text', placeholder: 'Jakarta', required: true },
+                            { name: 'placeOfBirth', type: 'text', placeholder: 'Teresina', required: true },
                             ],
                         },
-                        { label: 'Parent Name', name: 'parentName', type: 'text', placeholder: 'John Doe', required: true },
-                        { label: 'Email', name: 'email', type: 'email', placeholder: 't7PpM@example.com', required: true },
+                        { label: 'Parent Name', name: 'parentName', type: 'text', placeholder: 'João Silva', required: true },
+                        { label: 'Email', name: 'email', type: 'email', placeholder: 'ana@example.com', required: true },
                         { label: 'Phone', name: 'phone', type: 'tel', placeholder: '(11) 91234-5678', required: true },
                         { label: 'Address', name: 'address', type: 'textarea', placeholder: 'Rua das Flores, 123', required: true },
                     ]}
@@ -133,9 +133,9 @@ export default function AddStudentPage() {
                     watch={watch}
                     control={control}
                     fields={[
-                        { label: 'First Name', name: 'parentFirstName', type: 'text', placeholder: 'Samantha', required: true },
-                        { label: 'Last Name', name: 'parentLastName', type: 'text', placeholder: 'William', required: true },
-                        { label: 'Email', name: 'parentEmail', type: 'email', placeholder: 't7PpM@example.com', required: true },
+                        { label: 'First Name', name: 'parentFirstName', type: 'text', placeholder: 'João', required: true },
+                        { label: 'Last Name', name: 'parentLastName', type: 'text', placeholder: 'Silva', required: true },
+                        { label: 'Email', name: 'parentEmail', type: 'email', placeholder: 'joao@example.com', required: true },
                         { label: 'Phone', name: 'parentPhone', type: 'tel', placeholder: '(11) 91234-5678', required: true },
                         { label: 'Address', name: 'parentAddress', type: 'textarea', placeholder: 'Rua das Flores, 123', required: true },
                         { label: 'Payments', name: 'payments', type: 'radio', options: ['Cash', 'Debit'], required: true },
