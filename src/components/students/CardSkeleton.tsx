@@ -1,10 +1,10 @@
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 
-const CardSkeleton = () => {
+const CardSkeleton = ({ rowsPerPage = 10 }: { rowsPerPage: number }) => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 !pb-0">
-            {Array.from({ length: 4 }).map((_, index) => (
+            {Array.from({ length: rowsPerPage }).map((_, index) => (
                 <div
                 key={index}
                 className="border border-gray-100 rounded-lg p-4 flex flex-col gap-4 shadow-sm"

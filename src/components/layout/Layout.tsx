@@ -1,7 +1,8 @@
 'use client'
 
-import React, { ReactNode, useState } from 'react';
 import Sidebar from './Sidebar'; 
+import React, { ReactNode, useState } from 'react';
+
 import { Menu } from 'lucide-react';
 
 interface LayoutProps {

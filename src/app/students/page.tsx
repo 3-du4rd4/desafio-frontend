@@ -33,7 +33,7 @@ export default function StudentsPage() {
 
     const StudentsDisplay = () => {
         if (loadingData) {
-            return isMobile ? <CardSkeleton /> : <TableSkeleton rowsPerPage={rowsPerPage} />;
+            return isMobile ? <CardSkeleton rowsPerPage={rowsPerPage} /> : <TableSkeleton rowsPerPage={rowsPerPage} />;
         }
         return isMobile 
             ? <StudentsCard currentData={currentData} students={currentData} /> 

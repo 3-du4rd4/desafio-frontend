@@ -5,11 +5,10 @@ import { formatDate } from '@/utils/date';
 import { useRouter } from 'next/navigation';
 import { getInitials } from '@/utils/string';
 import Badge from '@/components/layout/Badge';
-import Skeleton from 'react-loading-skeleton';
 import { getGradeColor } from '@/utils/students';
 import 'react-loading-skeleton/dist/skeleton.css';
-import React, { useEffect, useState } from 'react';
-import { Student, useStudents } from '@/contexts/StudentsContext';
+import React, { useState } from 'react';
+import { Student } from '@/contexts/StudentsContext';
 
 import { Phone, Mail, ClipboardCheck, LibraryBig, Plus } from 'lucide-react';
 

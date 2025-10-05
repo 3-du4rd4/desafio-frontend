@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useContext } from 'react';
+import React from 'react';
 import Button from './Button';
 
 import { ChevronLeft, ChevronRight } from 'lucide-react';
