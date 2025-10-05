@@ -69,7 +69,7 @@ A aplicação estará disponível em: [**http://localhost:3000**](http://localho
 
 <img width="1900" height="1029" alt="image" src="https://github.com/user-attachments/assets/60ace504-9d2f-4020-bb6d-ffeda5371487" />
 
-<img width="476" height="603" alt="image" src="https://github.com/user-attachments/assets/629ddc59-c606-4959-90a1-5f4079522b27" />
+<img width="476" height="582" alt="image" src="https://github.com/user-attachments/assets/a21b0595-2efa-40ab-8ea4-dfb6c4d013ec" />
 
 <img width="415" height="835" alt="image" src="https://github.com/user-attachments/assets/614e24f4-19af-4e68-8853-4f39e2e89331" />
 
