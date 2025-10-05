@@ -4,14 +4,12 @@ import React from 'react';
 import Header from '@/components/layout/Header';
 import Button from '@/components/layout/Button';
 import SortButton from '@/components/students/SortButton';
-import { StudentsProvider } from '@/contexts/StudentsContext';
 import StudentsTable from '@/components/students/StudentsTable';
 
 import { Plus } from 'lucide-react';
 
 export default function StudentsPage() {
     return (
-        <StudentsProvider>
             <div className="flex flex-col gap-6">
                 <Header title="Students" />
 
@@ -30,6 +28,5 @@ export default function StudentsPage() {
                     <StudentsTable />
                 </section>
             </div>
-        </StudentsProvider>
     );
 }

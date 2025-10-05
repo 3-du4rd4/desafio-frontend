@@ -7,9 +7,10 @@ import Header from '@/components/layout/Header';
 import { zodResolver } from '@hookform/resolvers/zod';
 import FormSection from '@/components/layout/FormSection';
 import { useRouter } from 'next/navigation';
-import { Student, StudentsProvider, useStudents } from '@/contexts/StudentsContext';
+import { Student, useStudents } from '@/contexts/StudentsContext';
 import Button from '@/components/layout/Button';
 import { generateRandomId, getRandomGrade } from '@/utils/students';
+import toast from 'react-hot-toast';
 
 const studentSchema = z.object({
     firstName: z.string().min(3, 'Nome deve ter pelo menos 3 caracteres'),
@@ -74,11 +75,11 @@ export default function AddStudentPage() {
 
         addStudent(newStudent);
         sessionStorage.removeItem(draftKey); 
+        toast.success('Estudante salvo com sucesso!');
         router.push('/students');
     };
 
     return (
-        <StudentsProvider>
             <div className="flex flex-col gap-6">
                 <Header title="Add New Student" />
 
@@ -143,6 +144,5 @@ export default function AddStudentPage() {
                     </div>
                 </form>
             </div>
-        </StudentsProvider>
     );
 }
