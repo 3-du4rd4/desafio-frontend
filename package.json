@@ -16,6 +16,7 @@
     "react-dom": "19.1.0",
     "react-hook-form": "^7.64.0",
     "react-hot-toast": "^2.6.0",
+    "react-loading-skeleton": "^3.5.0",
     "zod": "^4.1.11"
   },
   "devDependencies": {
