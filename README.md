@@ -48,7 +48,7 @@ O foco principal é demonstrar boas práticas de **desenvolvimento com React/Nex
 
 ### **1️⃣ Clonar o repositório**
 
-git clone https://github.com/SEU-USUARIO/desafio-frontend.git
+git clone [https://github.com/SEU-USUARIO/desafio-frontend.git](https://github.com/3-du4rd4/desafio-frontend.git)
 
 cd desafio-frontend
 
