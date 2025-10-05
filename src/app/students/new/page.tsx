@@ -1,12 +1,13 @@
 'use client';
 
 import * as z from 'zod';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Header from '@/components/layout/Header';
 import { zodResolver } from '@hookform/resolvers/zod';
 import FormSection from '@/components/layout/FormSection';
 import { StudentsProvider } from '@/contexts/StudentsContext';
+import Button from '@/components/layout/Button';
 
 const studentSchema = z.object({
     firstName: z.string().min(3, 'Nome deve ter pelo menos 3 caracteres'),
@@ -33,12 +34,31 @@ const studentSchema = z.object({
 type StudentFormData = z.infer<typeof studentSchema>;
 
 export default function AddStudentPage() {
-    const { register, handleSubmit, formState: { errors } } = useForm<StudentFormData>({
+    const [draftSaved, setDraftSaved] = useState(false);
+    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm<StudentFormData>({
         resolver: zodResolver(studentSchema),
+        defaultValues: {} 
     });
 
+    const draftKey = 'studentDraft';
+
+    useEffect(() => {
+        const draft = sessionStorage.getItem(draftKey);
+        if (draft) {
+        reset(JSON.parse(draft));
+        }
+    }, [reset]);
+
+    const handleSaveDraft = () => {
+        const currentData = watch();
+        sessionStorage.setItem(draftKey, JSON.stringify(currentData));
+        setDraftSaved(true);
+        setTimeout(() => setDraftSaved(false), 1500);
+    };
+
     const onSubmit = (data: StudentFormData) => {
-     console.log('Formulário válido:', data);
+        console.log('Formulário enviado:', data);
+        sessionStorage.removeItem(draftKey); 
     };
 
     return (
@@ -81,12 +101,30 @@ export default function AddStudentPage() {
                         ]}
                     />
 
-                    <button
-                        type="submit"
-                        className="self-end bg-[#4D44B5] text-white px-6 py-2 rounded-md hover:bg-[#3a3691] transition"
-                    >
-                        Save
-                    </button>
+                    <div className='flex items-center justify-end gap-4 flex-wrap'>
+                        <div className='relative w-fit'>
+                        <Button
+                            title="Save as Draft"
+                            onClick={handleSubmit(handleSaveDraft)}
+                        />
+
+                        {draftSaved && (
+                            <div
+                                role="tooltip"
+                                className="absolute -top-12 left-1/2 -translate-x-1/2 bg-[#4D44B5] text-white text-xs font-medium px-2 py-1 rounded-md shadow-md animate-fade"
+                                >
+                                Rascunho salvo!
+                                <div className="tooltip-arrow"></div>
+                            </div>
+                        )}
+                        </div>
+
+                        <Button
+                            title='Submit'
+                            isFilled
+                            type='submit'
+                        />
+                    </div>
                 </form>
             </div>
         </StudentsProvider>
