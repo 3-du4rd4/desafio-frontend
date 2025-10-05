@@ -1,17 +1,17 @@
 'use client';
 
+import Button from '../layout/Button';
 import { formatDate } from '@/utils/date';
+import { useRouter } from 'next/navigation';
 import { getInitials } from '@/utils/string';
 import Badge from '@/components/layout/Badge';
 import Pagination from '../layout/Pagination';
-import React, { useEffect, useState } from 'react';
-import { useStudents } from '@/contexts/StudentsContext';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import React, { useEffect, useState } from 'react';
+import { useStudents } from '@/contexts/StudentsContext';
 
 import { Phone, Mail, ClipboardCheck, LibraryBig, Plus } from 'lucide-react';
-import Button from '../layout/Button';
-import { useRouter } from 'next/navigation';
 
 const gradeColors: Record<string, string> = {
   'VII A': '#FB7D5B',  

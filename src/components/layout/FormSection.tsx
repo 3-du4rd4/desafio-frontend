@@ -1,5 +1,5 @@
 import React from 'react';
-import { FieldErrors, FieldValues, Path, useForm, UseFormRegister } from 'react-hook-form';
+import { FieldErrors, FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
 interface SubField {
   name: string;
@@ -30,27 +30,26 @@ const FormSection = <T extends FieldValues>({ title, fields, register, errors }:
   return (
     <div className="bg-white rounded-2xl shadow">
       <div className="px-6 py-3 bg-[#4D44B5] rounded-t-2xl">
-        <h3 className="font-semibold text-lg text-white">{title}</h3>
+        <h3 className="font-semibold text-md lg:text-xl text-white">{title}</h3>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-4 p-6">
         {fields.map((field, index) => (
           <div key={`${field.name}-${index}`} className="flex flex-col gap-2">
-            <label htmlFor={field.name} className="font-medium text-[#303972]">
-              {field.label}{field.required && <span className="ml-2">*</span>}
+            <label htmlFor={field.name} className="font-medium text-[#303972] text-sm lg:text-base">
+              {field.label}{field.required && <span className="ml-1 lg:ml-2">*</span>}
             </label>
 
             {field.type === 'group' ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-4">
                 {field.fields?.map((subField, subIndex) => (
                   <div key={`${subField.name}-${subIndex}`} className="flex flex-col gap-1">
                     <input
-                      {...register(subField.name as unknown as Path<T>)}
+                      {...register(subField.name as Path<T>)}
                       id={subField.name}
                       type={subField.type || 'text'}
                       placeholder={subField.placeholder}
-                      required={subField.required}
-                      className="flex-1 border border-[#C1BBEB] p-3 rounded text-[#A098AE] focus:border-[#4D44B5] focus:ring-1 focus:ring-[#4D44B5] focus:outline-none"
+                      className="flex-1 border border-[#C1BBEB] p-2 lg:p-3 rounded text-sm lg:text-base text-[#A098AE] focus:border-[#4D44B5] focus:ring-1 focus:ring-[#4D44B5] focus:outline-none"
                     />
                     {errors[subField.name as keyof T] && (
                       <span className="text-red-500 text-xs mt-1">
@@ -63,12 +62,11 @@ const FormSection = <T extends FieldValues>({ title, fields, register, errors }:
             ) : field.type === 'textarea' ? (
               <>
                 <textarea
-                  {...register(field.name as unknown as Path<T>)}
+                  {...register(field.name as Path<T>)}
                   id={field.name}
                   placeholder={field.placeholder}
-                  required={field.required}
                   rows={4}
-                  className="border border-[#C1BBEB] p-3 rounded-md text-[#A098AE] resize-none focus:border-[#4D44B5] focus:ring-1 focus:ring-[#4D44B5] focus:outline-none"
+                  className="border border-[#C1BBEB] p-2 lg:p-3 rounded-md text-sm lg:text-base text-[#A098AE] resize-none focus:border-[#4D44B5] focus:ring-1 focus:ring-[#4D44B5] focus:outline-none"
                 />
                 {errors[field.name as keyof T] && (
                   <span className="text-red-500 text-xs mt-1">
@@ -77,21 +75,20 @@ const FormSection = <T extends FieldValues>({ title, fields, register, errors }:
                 )}
               </>
             ) : field.type === 'radio' ? (
-              <div className="flex gap-4">
+              <div className="flex gap-6 lg:gap-4">
                 {field.options?.map(option => (
-                  <label key={option} className="flex items-center gap-2 text-[#A098AE]">
+                  <label key={option} className="flex items-center gap-2 text-sm lg:text-base text-[#A098AE]">
                     <input
-                      {...register(field.name as unknown as Path<T>)}
+                      {...register(field.name as Path<T>)}
                       type="radio"
                       id={`${field.name}-${option}`}
                       value={option}
-                      required={field.required}
                     />
                     {option}
                   </label>
                 ))}
                 {errors[field.name as keyof T] && (
-                  <span className="text-red-500 text-xs mt-1 col-span-2">
+                  <span className="text-red-500 text-xs mt-1">
                     {errors[field.name as keyof T]?.message?.toString()}
                   </span>
                 )}
@@ -99,12 +96,11 @@ const FormSection = <T extends FieldValues>({ title, fields, register, errors }:
             ) : (
               <>
                 <input
-                  {...register(field.name as unknown as Path<T>)}
+                  {...register(field.name as Path<T>)}
                   id={field.name}
                   type={field.type}
                   placeholder={field.placeholder}
-                  required={field.required}
-                  className="border border-[#C1BBEB] p-3 rounded-md text-[#A098AE] focus:border-[#4D44B5] focus:ring-1 focus:ring-[#4D44B5] focus:outline-none"
+                  className="border border-[#C1BBEB] p-2 lg:p-3 rounded-md text-sm lg:text-base text-[#A098AE] focus:border-[#4D44B5] focus:ring-1 focus:ring-[#4D44B5] focus:outline-none"
                 />
                 {errors[field.name as keyof T] && (
                   <span className="text-red-500 text-xs mt-1">

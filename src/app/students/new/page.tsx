@@ -31,7 +31,7 @@ const studentSchema = z.object({
     }, 'E-mail inválido'),
     parentPhone: z.string().min(8, 'Telefone inválido'),
     parentAddress: z.string().min(5, 'Endereço deve ter pelo menos 5 caracteres'),
-    payments: z.enum(['Cash', 'Debit']),
+    payments: z.enum(['Cash', 'Debit'], 'Selecione uma forma de pagamento'),
 });
 
 type StudentFormData = z.infer<typeof studentSchema>;
@@ -40,7 +40,8 @@ export default function AddStudentPage() {
     const [draftSaved, setDraftSaved] = useState(false);
     const { register, handleSubmit, formState: { errors }, reset, watch } = useForm<StudentFormData>({
         resolver: zodResolver(studentSchema),
-        defaultValues: {} 
+        defaultValues: {} ,
+        mode: 'onBlur',
     });
 
     const router = useRouter();

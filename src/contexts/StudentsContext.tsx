@@ -28,17 +28,17 @@ interface StudentsContextProps {
 export const StudentsContext = createContext<StudentsContextProps | undefined>(undefined);
 
 const defaultStudents: Student[] = [
-//   { id: '#123456789', name: 'Laura Mendes', date: '2023-02-15', parentName: 'Ricardo Mendes', city: 'São Paulo', phone: '(11) 91234-5678', email: 'laura.mendes@example.com', grade: 'VII A' },
-//   { id: '#987654321', name: 'Pedro Santos', date: '2023-03-10', parentName: 'Fernanda Santos', city: 'Rio de Janeiro', phone: '(21) 99876-5432', email: 'pedro.santos@example.com', grade: 'VII B' },
-//   { id: '#456789123', name: 'Camila Rocha', date: '2023-01-25', parentName: 'André Rocha', city: 'Belo Horizonte', phone: '(31) 98765-4321', email: 'camila.rocha@example.com', grade: 'VII C' },
-//   { id: '#000000001', name: 'Lucas Almeida', date: '2023-02-01', parentName: 'Patrícia Almeida', city: 'Curitiba', phone: '(41) 99654-3210', email: 'lucas.almeida@example.com', grade: 'VII A' },
-//   { id: '#000000002', name: 'Isabela Costa', date: '2023-01-18', parentName: 'Marcos Costa', city: 'Fortaleza', phone: '(85) 98877-6655', email: 'isabela.costa@example.com', grade: 'VII B' },
-//   { id: '#000000003', name: 'Rafael Oliveira', date: '2023-03-05', parentName: 'Renata Oliveira', city: 'Recife', phone: '(81) 99777-8899', email: 'rafael.oliveira@example.com', grade: 'VII C' },
-//   { id: '#000000004', name: 'Ana Beatriz Lima', date: '2023-02-11', parentName: 'Sérgio Lima', city: 'Brasília', phone: '(61) 99911-2233', email: 'ana.lima@example.com', grade: 'VII A' },
-//   { id: '#000000005', name: 'Gustavo Pereira', date: '2023-03-20', parentName: 'Daniela Pereira', city: 'Salvador', phone: '(71) 99123-4567', email: 'gustavo.pereira@example.com', grade: 'VII B' },
-//   { id: '#000000006', name: 'Mariana Torres', date: '2023-01-29', parentName: 'Eduardo Torres', city: 'Porto Alegre', phone: '(51) 99888-7766', email: 'mariana.torres@example.com', grade: 'VII C' },
-//   { id: '#000000007', name: 'Felipe Souza', date: '2023-02-07', parentName: 'Cláudia Souza', city: 'Florianópolis', phone: '(48) 99777-1122', email: 'felipe.souza@example.com', grade: 'VII A' },
-//   { id: '#000000008', name: 'Sofia Nunes', date: '2023-03-02', parentName: 'Paulo Nunes', city: 'Vitória', phone: '(27) 99222-3344', email: 'sofia.nunes@example.com', grade: 'VII B' },
+  { id: '#123456789', name: 'Laura Mendes', date: '2023-02-15', parentName: 'Ricardo Mendes', city: 'São Paulo', phone: '(11) 91234-5678', email: 'laura.mendes@example.com', grade: 'VII A' },
+  { id: '#987654321', name: 'Pedro Santos', date: '2023-03-10', parentName: 'Fernanda Santos', city: 'Rio de Janeiro', phone: '(21) 99876-5432', email: 'pedro.santos@example.com', grade: 'VII B' },
+  { id: '#456789123', name: 'Camila Rocha', date: '2023-01-25', parentName: 'André Rocha', city: 'Belo Horizonte', phone: '(31) 98765-4321', email: 'camila.rocha@example.com', grade: 'VII C' },
+  { id: '#000000001', name: 'Lucas Almeida', date: '2023-02-01', parentName: 'Patrícia Almeida', city: 'Curitiba', phone: '(41) 99654-3210', email: 'lucas.almeida@example.com', grade: 'VII A' },
+  { id: '#000000002', name: 'Isabela Costa', date: '2023-01-18', parentName: 'Marcos Costa', city: 'Fortaleza', phone: '(85) 98877-6655', email: 'isabela.costa@example.com', grade: 'VII B' },
+  { id: '#000000003', name: 'Rafael Oliveira', date: '2023-03-05', parentName: 'Renata Oliveira', city: 'Recife', phone: '(81) 99777-8899', email: 'rafael.oliveira@example.com', grade: 'VII C' },
+  { id: '#000000004', name: 'Ana Beatriz Lima', date: '2023-02-11', parentName: 'Sérgio Lima', city: 'Brasília', phone: '(61) 99911-2233', email: 'ana.lima@example.com', grade: 'VII A' },
+  { id: '#000000005', name: 'Gustavo Pereira', date: '2023-03-20', parentName: 'Daniela Pereira', city: 'Salvador', phone: '(71) 99123-4567', email: 'gustavo.pereira@example.com', grade: 'VII B' },
+  { id: '#000000006', name: 'Mariana Torres', date: '2023-01-29', parentName: 'Eduardo Torres', city: 'Porto Alegre', phone: '(51) 99888-7766', email: 'mariana.torres@example.com', grade: 'VII C' },
+  { id: '#000000007', name: 'Felipe Souza', date: '2023-02-07', parentName: 'Cláudia Souza', city: 'Florianópolis', phone: '(48) 99777-1122', email: 'felipe.souza@example.com', grade: 'VII A' },
+  { id: '#000000008', name: 'Sofia Nunes', date: '2023-03-02', parentName: 'Paulo Nunes', city: 'Vitória', phone: '(27) 99222-3344', email: 'sofia.nunes@example.com', grade: 'VII B' },
 ];
 
 export const StudentsProvider = ({ children }: { children: ReactNode }) => {
