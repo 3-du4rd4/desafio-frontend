@@ -1,3 +1,89 @@
+**🧩 Akademi**
+
+**🎯 Objetivo do Repositório**
+------------------------------
+
+Este projeto foi desenvolvido como parte de um desafio técnico com o objetivo de implementar duas telas a partir de um design disponibilizado: página de Estudantes e página de Novo Estudante.
+
+O foco principal é demonstrar boas práticas de **desenvolvimento com React/Next.js**, **componentização**, **organização de código**, e **design limpo e funcional**.
+
+**⚙️ Principais Funcionalidades**
+---------------------------------
+
+*   Listagem de estudantes e informações principais (nome, responsável, turma, cidade, contato etc.)
+    
+*   Adição de novos estudantes via formulário validado
+    
+*   Skeletons e estados de carregamento aprimorados
+    
+*   Paginação
+    
+*   Interface responsiva e limpa utilizando Tailwind CSS
+    
+*   Arquitetura baseada em componentes reutilizáveis
+    
+
+**🧠 Tecnologias Utilizadas**
+-----------------------------
+
+*   [Next.js](https://nextjs.org/)
+    
+*   [React](https://react.dev/)
+    
+*   TypeScript
+    
+*   React Hook Form
+    
+*   Zod
+    
+*   [Tailwind CSS](https://tailwindcss.com/)
+    
+*   Lucide React
+    
+*   React Hot Toast
+    
+
+**🚀 Como Rodar o Projeto Localmente**
+--------------------------------------
+
+### **1️⃣ Clonar o repositório**
+
+git clone https://github.com/SEU-USUARIO/desafio-frontend.git
+
+cd desafio-frontend
+
+### **2️⃣ Instalar as dependências**
+
+npm install
+
+### **3️⃣ Rodar o servidor de desenvolvimento**
+
+npm run dev
+
+A aplicação estará disponível em: [**http://localhost:3000**](http://localhost:3000)
+
+**📸 Capturas de Tela**
+-----------------------
+
+**Tela Inicial (Listagem de Estudantes)**
+
+<img width="1900" height="1029" alt="image" src="https://github.com/user-attachments/assets/60ace504-9d2f-4020-bb6d-ffeda5371487" />
+
+<img width="476" height="603" alt="image" src="https://github.com/user-attachments/assets/629ddc59-c606-4959-90a1-5f4079522b27" />
+
+<img width="415" height="835" alt="image" src="https://github.com/user-attachments/assets/614e24f4-19af-4e68-8853-4f39e2e89331" />
+
+**Tela de Novo Estudante**
+
+<img width="1894" height="1025" alt="image" src="https://github.com/user-attachments/assets/71574fb9-5a11-48e6-8776-aee7c554eff1" />
+
+**👩‍💻 Desenvolvido por**
+--------------------------
+
+**Maria Eduarda Mendes** | Projeto desenvolvido como parte de um **desafio técnico**.
+
+--------------------------
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
