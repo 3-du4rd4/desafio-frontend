@@ -58,3 +58,10 @@ body {
   animation: fadeInOut 1.5s ease-in-out forwards;
 }
 
+@media (min-width: 769px) {
+  .custom-bg-white {
+    background-color: white;
+    box-shadow: var(--tw-shadow);
+  }
+}
+
