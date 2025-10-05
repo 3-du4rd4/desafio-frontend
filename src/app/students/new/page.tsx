@@ -123,7 +123,7 @@ export default function AddStudentPage() {
                         <div className='relative w-fit'>
                         <Button
                             title="Save as Draft"
-                            onClick={handleSubmit(handleSaveDraft)}
+                            onClick={handleSaveDraft}
                         />
 
                         {draftSaved && (
