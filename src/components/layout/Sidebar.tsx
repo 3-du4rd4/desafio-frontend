@@ -16,7 +16,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   const links = [
     { label: 'Dashboard', href: '/', icon: House },
     { label: 'Students', href: '/students', icon: Users },
-    { label: 'Add Student', href: '/add-student', icon: UserPlus },
+    { label: 'Add Student', href: '/students/new', icon: UserPlus },
     { label: 'Teachers', href: '/teachers', icon: Users },
     { label: 'Finance', href: '/finance', icon: HandCoins },
     { label: 'User', href: '/user', icon: User },

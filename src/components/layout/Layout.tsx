@@ -1,7 +1,8 @@
 'use client'
 
-import React, { ReactNode, useState } from 'react';
 import Sidebar from './Sidebar'; 
+import React, { ReactNode, useState } from 'react';
+
 import { Menu } from 'lucide-react';
 
 interface LayoutProps {
@@ -24,7 +25,7 @@ const Layout = ({ children }: LayoutProps) => {
 
             <Sidebar isOpen={isOpen} setIsOpen={setIsOpen}/>
 
-            <main className={`flex-1 bg-[#F3F4FF] p-6 overflow-auto h-screen transition-opacity duration-300 !pt-14 lg:!pt-6 ${isOpen ? 'opacity-50' : ''}`}>
+            <main className={`flex-1 bg-[#F3F4FF] p-6 md:px-8 overflow-auto h-screen transition-opacity duration-300 !pt-14 lg:!pt-6 ${isOpen ? 'opacity-50' : ''}`}>
                 {children}
             </main>
         </div>

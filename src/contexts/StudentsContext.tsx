@@ -21,6 +21,7 @@ interface StudentsContextProps {
     sortByOldest: () => void;
     sortByNewest: () => void;
     setCurrentPage: (page: number) => void;
+    addStudent: (student: Student) => void;
     setStudents: React.Dispatch<React.SetStateAction<Student[]>>;
 }
 
@@ -38,7 +39,6 @@ const defaultStudents: Student[] = [
   { id: '#000000006', name: 'Mariana Torres', date: '2023-01-29', parentName: 'Eduardo Torres', city: 'Porto Alegre', phone: '(51) 99888-7766', email: 'mariana.torres@example.com', grade: 'VII C' },
   { id: '#000000007', name: 'Felipe Souza', date: '2023-02-07', parentName: 'Cláudia Souza', city: 'Florianópolis', phone: '(48) 99777-1122', email: 'felipe.souza@example.com', grade: 'VII A' },
   { id: '#000000008', name: 'Sofia Nunes', date: '2023-03-02', parentName: 'Paulo Nunes', city: 'Vitória', phone: '(27) 99222-3344', email: 'sofia.nunes@example.com', grade: 'VII B' },
-  { id: '#000000009', name: 'Matheus Ribeiro', date: '2023-01-12', parentName: 'Juliana Ribeiro', city: 'Campinas', phone: '(19) 99444-5566', email: 'matheus.ribeiro@example.com', grade: 'VII C' },
 ];
 
 export const StudentsProvider = ({ children }: { children: ReactNode }) => {
@@ -60,14 +60,20 @@ export const StudentsProvider = ({ children }: { children: ReactNode }) => {
         );
     };
 
-    const rowsPerPage = 6;
+    const addStudent = (student: Student) => {
+        setStudents(prev => [...prev, student]);
+        sortByNewest();
+    };
+
+    const rowsPerPage = 10;
     const totalPages = Math.ceil(students.length / rowsPerPage);
     const [currentPage, setCurrentPage] = useState(1);
 
     return (
-        <StudentsContext.Provider 
-            value={{ students, setStudents, sortByNewest, sortByOldest, 
-                currentPage, setCurrentPage, totalPages, rowsPerPage 
+        <StudentsContext.Provider
+            value={{ students, setStudents, sortByNewest, sortByOldest,
+                currentPage, setCurrentPage, totalPages, rowsPerPage,
+                addStudent 
             }}
         >
             {children}
