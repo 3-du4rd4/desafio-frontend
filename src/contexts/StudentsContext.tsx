@@ -65,7 +65,7 @@ export const StudentsProvider = ({ children }: { children: ReactNode }) => {
         sortByNewest();
     };
 
-    const rowsPerPage = 6;
+    const rowsPerPage = 10;
     const totalPages = Math.ceil(students.length / rowsPerPage);
     const [currentPage, setCurrentPage] = useState(1);
 
