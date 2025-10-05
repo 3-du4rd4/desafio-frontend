@@ -21,6 +21,7 @@ interface StudentsContextProps {
     sortByOldest: () => void;
     sortByNewest: () => void;
     setCurrentPage: (page: number) => void;
+    addStudent: (student: Student) => void;
     setStudents: React.Dispatch<React.SetStateAction<Student[]>>;
 }
 
@@ -60,14 +61,19 @@ export const StudentsProvider = ({ children }: { children: ReactNode }) => {
         );
     };
 
+    const addStudent = (student: Student) => {
+        setStudents(prev => [...prev, student]);
+    };
+
     const rowsPerPage = 6;
     const totalPages = Math.ceil(students.length / rowsPerPage);
     const [currentPage, setCurrentPage] = useState(1);
 
     return (
-        <StudentsContext.Provider 
-            value={{ students, setStudents, sortByNewest, sortByOldest, 
-                currentPage, setCurrentPage, totalPages, rowsPerPage 
+        <StudentsContext.Provider
+            value={{ students, setStudents, sortByNewest, sortByOldest,
+                currentPage, setCurrentPage, totalPages, rowsPerPage,
+                addStudent 
             }}
         >
             {children}

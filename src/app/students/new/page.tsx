@@ -6,8 +6,10 @@ import { useForm } from 'react-hook-form';
 import Header from '@/components/layout/Header';
 import { zodResolver } from '@hookform/resolvers/zod';
 import FormSection from '@/components/layout/FormSection';
-import { StudentsProvider } from '@/contexts/StudentsContext';
+import { useRouter } from 'next/navigation';
+import { Student, StudentsProvider, useStudents } from '@/contexts/StudentsContext';
 import Button from '@/components/layout/Button';
+import { generateRandomId, getRandomGrade } from '@/utils/students';
 
 const studentSchema = z.object({
     firstName: z.string().min(3, 'Nome deve ter pelo menos 3 caracteres'),
@@ -40,7 +42,9 @@ export default function AddStudentPage() {
         defaultValues: {} 
     });
 
+    const router = useRouter();
     const draftKey = 'studentDraft';
+    const { addStudent } = useStudents();
 
     useEffect(() => {
         const draft = sessionStorage.getItem(draftKey);
@@ -57,8 +61,20 @@ export default function AddStudentPage() {
     };
 
     const onSubmit = (data: StudentFormData) => {
-        console.log('Formulário enviado:', data);
+        const newStudent: Student = {
+            name: `${data.firstName} ${data.lastName}`,
+            email: data.email,
+            phone: data.phone,
+            date: data.dateOfBirth,
+            grade: getRandomGrade(),
+            parentName: data.parentName,
+            city: data.placeOfBirth,
+            id: generateRandomId()
+        };
+
+        addStudent(newStudent);
         sessionStorage.removeItem(draftKey); 
+        router.push('/students');
     };
 
     return (
